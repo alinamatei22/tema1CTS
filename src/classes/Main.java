@@ -1,21 +1,30 @@
 package classes;
 
 
-import java.sql.*;
+import interfaces.DatabaseConnection;
+import interfaces.DbCreateTable;
+import interfaces.DbInsertData;
+import interfaces.DbReadData;
+
+import java.sql.Connection;
 
 public class Main {
 
     public static void main(String[] args) {
         try {
-            Class.forName("org.sqlite.JDBC");
-            Connection connection = DriverManager.getConnection("jdbc:sqlite:database.db");
-            connection.setAutoCommit(false);
 
-           // createTable(connection);
-            //insertData(connection);
-           // readData(connection);
+            DatabaseConnection databaseConnection = new CreateConnection();
+            Connection connection = databaseConnection.createConnection();
 
-            connection.close();
+            DbCreateTable createTable = new CreateTable();
+            createTable.createTable(connection);
+
+            DbInsertData insertData = new InsertData();
+            insertData.insertData(connection);
+
+            DbReadData readData = new ReadData();
+            readData.readData(connection);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
