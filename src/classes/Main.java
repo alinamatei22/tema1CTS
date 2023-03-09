@@ -19,6 +19,7 @@ public class Main {
             DbCreateTable createTable = new CreateTable();
             createTable.createTable(connection);
 
+
             DbInsertData insertData = new InsertData();
             insertData.insertData(connection);
 
