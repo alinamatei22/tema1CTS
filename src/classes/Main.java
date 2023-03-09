@@ -23,6 +23,7 @@ public class Main {
             DbInsertData insertData = new InsertData();
             insertData.insertData(connection);
 
+
             DbReadData readData = new ReadData();
             readData.readData(connection);
 
